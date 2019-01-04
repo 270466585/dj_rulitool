@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% block workspace_css %}
+    .rulimr_list{width:95%;min-height:690px;margin:30px 40px;}
+    .rulimr_list h2{font-weight:normal;color:#444444;font-size:20px;}
+    .list_func_box{width:95%;min-height:20px;margin:30px 0;}
+    .search_func{width:500px;float:left;}
+    .search_func label{color:#444444;font-size:20px;}
+    .search_func input{width:200px;height:25px;margin:0 0 0 10px;}
+    .search_func button{width:120px;height:34px;border-radius: 10px;
+            background-color: cornflowerblue;outline: none;margin:0 0 0 10px;}
+    .search_func .button_value{font-size: 19px;color: #ffffff;}
+    .add_func{width:130px;float:right;}
+    .add_func button{width:130px;height:34px;border-radius: 10px;
+            background-color: cornflowerblue;outline: none;margin:0 0 0 10px;}
+    .add_func .button_value{font-size: 19px;color: #ffffff;}
+    .url_table_box{width:100%;min-height:200px;margin:20px 0 0 0;}
+    .url_table_box td{color:#444444;}
+    .addurl_box{position: absolute;left: 50%;top: 50%;transform: translate(-50%,-50%);
+            width:450px;height:430px;background-color: cornflowerblue;border-radius: 10px;
+            box-shadow: 8px 8px 10px rgba(143,143,143,0.9);}
+    .addurl_box h1{font-weight:normal;text-align:center;color:#ffffff;padding:25px 0 0 0;
+            font-size:33px;}
+    .addcomment{width:450px;height:310px;background-color: #ffffff;margin:25px 0 0 0px;}
+    .addcomment .input_form{width:420px;height:340px;padding:25px 0 0 35px;}
+    .input_form label{font-size:22px;color:#444444;}
+    .input_form input{width:220px;height:30px;margin:0 0 0 10px;outline:none;border:grey 1px solid;}
+    .input_form button{width:120px;height:34px;border-radius: 10px;
+            background-color: cornflowerblue;outline: none;margin:0 0 0 45px;
+            font-size:18px;color:#ffffff;}
+	.url_table_box a:hover{
+		font-size:20px;
+	}
+    .url_table_box a{
+		text-decoration: none;
+		color:red;
+		text-shadow: 10px 5px 10px black;
+	}
+{% endblock %}
+{% block li %}
+    <li><a href="{{ nav2 }}">{{ nav1 }}</a></li>
+    <li><a href="{{ nav4 }}">{{ nav3 }}</a></li>
+{% endblock %}
+{% block workspace %}
+    <div class="rulimr_list">
+        <h2>首页 > 美哆链接集合 > 所有链接</h2>
+        <div class="list_func_box">
+            <div class="search_func">
+                {% csrf_token %}
+                <form role="form" method="post">
+                    <label>搜索内容 : <input type="text" name="search_text"></label>
+                    <button type="submit">
+                        <label class="button_value">搜 索</label>
+                    </button>
+                </form>
+            </div>
+            <div class="add_func">
+                <button class="button_add" onclick = "openDialog()" id="anniu">
+                    <label class="button_value">添加新链接</label>
+                </button>
+            </div>
+        </div>
+        <hr>
+        <div class="url_table_box">
+            <table bgcolor="#808080"  width="100%" cellspacing="2" align="center">
+                <tr align="center" bgcolor="white">
+                    <td width="5%" height="60"><b>ID</b></td>
+                    <td width="10%" height="60"><b>项目名称</b></td>
+                    <td width="10%" height="60"><b>类 型</b></td>
+                    <td width="35%" height="60"><b>测试环境</b></td>
+                    <td width="35%" height="60"><b>正式环境</b></td>
+                </tr>
+                {% for item in allurls %}
+                <tr align="center" bgcolor="white">
+                    <td width="5%" height="60">{{ forloop.counter }}</td>
+                    <td width="10%" height="60">{{ item.urlname }}</td>
+                    <td width="10%" height="60">{{ item.urltype }}</td>
+                    <td width="35%" height="60"><a href="{{ item.urltestenv }}" target="_blank">{{ item.urltestenv }}</a></td>
+                    <td width="35%" height="60"><a href="{{ item.urlformalenv }}" target="_blank">{{ item.urlformalenv }}</a></td>
+                </tr>
+                {% endfor %}
+            </table>
+        </div>
+    </div>
+    <div id="light" class="addurl_box" style="display: none">
+        <h1>添加项目链接地址</h1>
+        <div class="addcomment">
+            <form class="input_form" method="post">
+                {% csrf_token %}
+                <label>链接项目名称 : <input type="text" name="urlname"/></label>
+                <br><br>
+                <label>链接项目类型 : <input type="text" name="urltype"/></label>
+                <br><br>
+                <label>测试环境地址 : <input type="url" name="testenv_url"/></label>
+                <br><br>
+                <label>正式环境地址 : <input type="url" name="formalenv_url"/></label>
+                <br><br>
+                <button type="button" onclick = "closeDialog()">退 出</button>
+                <button type="submit">创 建</button>
+            </form>
+        </div>
+    </div>
+    <div id="fade">
+    <script type="text/javascript">
+	    $(function(){
+        })
+	    function openDialog(){
+	        document.getElementById('light').style.display='block';
+	        document.getElementById('fade').style.display='block'
+	    }
+	    function closeDialog(){
+	        document.getElementById('light').style.display='none';
+	        document.getElementById('fade').style.display='none'
+	    }
+	</script>
+{% endblock %}

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>用户登录</title>
+    <style type="text/css">
+        {% load static %}
+        *{padding: 0;margin: 0;}
+        body{background: url("{% static 'images/login_background.jpg' %}") center top no-repeat fixed;}
+        .login_box{width:450px;height: 340px;border-radius: 20px;
+            background-color: #ffffff;position: absolute;
+            left: 50%;top: 50%;transform: translate(-50%,-50%);
+            box-shadow: 0 0 10px #ffffff;}
+        .login_title{width:450px;height: 100px;}
+        .login_title img{float:left;margin: 20px 10px 0 110px;}
+        .login_title h1{display: inline-block;font-weight: normal;
+            font-size:35px;float: left;margin: 30px 0 0 0;color:#444;}
+        .login_input{width: 450px;height:200px; margin: 40px 0 0 0;}
+        .login_input form{margin: 0 0 0 60px;}
+        .login_input label{font-size: 23px;color:#444;}
+        .login_input input{height: 28px;width: 220px;outline:none;border:grey 1px solid;margin: 0 0 0 10px;}
+        .login_input button{width:120px;height:50px;border-radius: 10px;
+            background-color: cornflowerblue;margin: 0 0 0 110px;outline: none;}
+        .login_input .button_text{font-size: 20px;color: #ffffff;}
+    </style>
+</head>
+<body>
+    <div class="login_box">
+        <div class="login_title">
+            <img src="{% static 'images/login_user.png' %}" alt="头像img">
+            <h1>用户登录</h1>
+        </div>
+        <hr>
+        <div class="login_input">
+            <form name="login_input_form" method="post">
+                {% csrf_token %}
+                <label>用户账号 : <input type="text" name="username"></label><br><br>
+                <label>用户密码 : <input type="password" name="passwd"></label><br><br>
+                <button type="submit">
+                    <label class="button_text">登 录</label>
+                </button>
+            </form>
+        </div>
+    </div>
+</body>
+</html>

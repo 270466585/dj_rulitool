@@ -1,0 +1,56 @@
+<!-- home.html -->
+{% extends 'base.html' %}
+{% block workspace_css %}
+    .site_desc{width: 97%;height: 210px;border-radius: 10px;background-color: #555960;margin: 10px 1.5%;}
+    .site_desc h1{font-weight: normal; font-size:33px;color:#e8e8e8;text-align: center;padding: 20px 0;letter-spacing: 1px;}
+    .site_desc p{font-size: 17px;color: #e8e8e8;text-align: center;line-height: 35px;}
+    .new_announce_box{width:55%;min-height: 300px;border: #555960 3px solid;border-radius: 10px;margin: 20px 1.5%;
+                float: left;}
+    .announce_title,.about_us_title{width: 100%;height: 60px;background-color: #cf4646;border-radius: 3px;}
+    .announce_title h1,.about_us_title h1{font-weight: normal;font-size:23px;color: #e8e8e8;padding: 12px 20px;
+                letter-spacing: 1px;}
+    .about_us_box{width:39%;min-height: 300px;border:#555960 3px solid;border-radius: 10px;margin: 20px 4px;
+                float: left;}
+    .announce_info{width:100%;height: 100%;margin: 20px 0 0 20px;}
+    .announce_info p{font-size:18px;color:#444444;line-height: 45px;}
+    .announce_info a{font-size: 18px;text-decoration: none;color:#cf4646;line-height: 45px;}
+    .announce_info a:hover{color:hotpink;}
+    .about_us_info{width:100%;height: 100%;margin: 20px 0 0 20px;}
+    .about_us_info p{font-size:18px;color:#444444;line-height: 40px;}
+{% endblock %}
+{% block li %}
+    <li><a href="{{ nav2 }}">{{ nav1 }}</a></li>
+    <li><a href="{{ nav4 }}">{{ nav3 }}</a></li>
+{% endblock %}
+{% block workspace %}
+    <div class="site_desc">
+        <h1>欢迎来到美哆链接集合</h1>
+        <p>美哆链接集合是如丽网络公司内部服务网站</p>
+        <p>目前仅提供各个应用不同环境的链接地址，我们还会不断更新功能</p>
+        <p>敬请期待</p>
+    </div>
+    <div class="new_announce_box">
+        <div class="announce_title">
+            <h1>最新通告</h1>
+        </div>
+        <hr color="#555960">
+        <div class="announce_info">
+            <p>1、编写美哆链接集合前端代码</p>
+            <p>2、利用Django搭建美哆链接集合website</p>
+            <p>3、新增美哆链接集合列表相关功能</p>
+            <a href="#">戳这里了解更多>></a>
+        </div>
+    </div>
+    <div class="about_us_box">
+        <div class="about_us_title">
+            <h1>关于我们</h1>
+        </div>
+        <hr color="#555960">
+        <div class="about_us_info">
+            <p>若您有什么意见或者建议可以与我联系 :</p>
+            <p>管理员 : 赵乔 </p>
+            <p>QQ : 270466585</p>
+            <p>微信 : 15002838657</p>
+        </div>
+    </div>
+{% endblock %}
